@@ -1,0 +1,28 @@
+{
+  "magazines": [
+    {
+      "id": "2025-여름-131",
+      "year": 2025,
+      "season": "여름",
+      "issue": 131,
+      "month": 6,
+      "title": "2025년 131호 서울사대부고 여름호",
+      "description": "서울대학교 사범대학 부설고등학교 동창회보 2025년 여름호",
+      "pdfUrl": "https://firebasestorage.googleapis.com/v0/b/snubugo-magazine.firebasestorage.app/o/pdfs%2F2025%EB%85%84%20131%ED%98%B8-%EC%84%9C%EC%9A%B8%EC%82%AC%EB%8C%80%EB%B6%80%EA%B3%A0%20%EC%97%AC%EB%A6%84%ED%98%B8.pdf?alt=media&token=26a4d4cd-ac9f-4619-8f5e-f3125c0f0e57",
+      "thumbnailUrl": "https://firebasestorage.googleapis.com/v0/b/snubugo-magazine.firebasestorage.app/o/thumbnails%2F2025%EB%85%84%20131%ED%98%B8-%EC%84%9C%EC%9A%B8%EC%82%AC%EB%8C%80%EB%B6%80%EA%B3%A0%20%EC%97%AC%EB%A6%84%ED%98%B8.png?alt=media&token=db651a6d-6780-441d-b1eb-44c416a9efa7",
+      "pageCount": 0,
+      "publishDate": "2025-06-01",
+      "fileSize": "계산 중...",
+      "isLatest": true,
+      "featured": false,
+      "tags": ["여름", "2025", "131호"],
+      "category": "동창회보"
+    }
+  ],
+  "settings": {
+    "title": "서울사대부고 동창회보 디지털 아카이브",
+    "description": "서울대학교 사범대학 부설고등학교 동창회보를 디지털로 보관하고 열람할 수 있는 아카이브입니다.",
+    "version": "1.0.0",
+    "lastUpdated": "2025-06-20"
+  }
+}
