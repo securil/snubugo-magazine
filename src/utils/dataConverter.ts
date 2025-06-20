@@ -1,6 +1,7 @@
 // Firebase URLs JSON 데이터를 Magazine 타입으로 변환하는 유틸리티
 
-import { Magazine, Season, SEASON_MONTHS, FirebaseUrlData } from '../types/magazine';
+import type { Magazine, Season, FirebaseUrlData } from '../types/magazine';
+import { SEASON_MONTHS } from '../types/magazine';
 
 /**
  * 파일명에서 연도, 호수, 계절 정보를 추출

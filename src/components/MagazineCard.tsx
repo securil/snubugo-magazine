@@ -23,12 +23,13 @@ interface Magazine {
   category: string;
 }
 
-const SEASON_COLORS = {
-  '봄': 'green',
-  '여름': 'amber', 
-  '가을': 'orange',
-  '겨울': 'blue'
-} as const;
+// 계절별 색상 (현재 미사용)
+// const SEASON_COLORS = {
+//   '봄': 'green',
+//   '여름': 'amber', 
+//   '가을': 'orange',
+//   '겨울': 'blue'
+// } as const;
 
 interface MagazineCardProps {
   magazine: Magazine;
@@ -36,7 +37,7 @@ interface MagazineCardProps {
 }
 
 const MagazineCard: React.FC<MagazineCardProps> = ({ magazine, onView }) => {
-  const seasonColor = SEASON_COLORS[magazine.season];
+  // const seasonColor = SEASON_COLORS[magazine.season]; // 현재 미사용
   
   return (
     <div className="card hover:shadow-lg transition-shadow duration-300 cursor-pointer">
