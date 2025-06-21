@@ -1,10 +1,88 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/snubugo-magazine/vite.svg" />
+    
+    <!-- ⭐ Favicon 설정 -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/snubugo-magazine/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/snubugo-magazine/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/snubugo-magazine/favicon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/snubugo-magazine/favicon-512x512.png" />
+    <link rel="icon" type="image/x-icon" href="/snubugo-magazine/favicon.ico" />
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/snubugo-magazine/apple-touch-icon.png" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/snubugo-magazine/manifest.json" />
+    
+    <!-- 기본 메타 태그 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <meta name="theme-color" content="#1e40af" />
+    
+    <!-- ⭐ 페이지 제목 및 설명 -->
+    <title>서울사대부고 동창회보 디지털 아카이브</title>
+    <meta name="description" content="서울대학교 사범대학 부설고등학교 동창회보의 체계적인 디지털 아카이브. 2021년부터 2025년까지 동창회보를 온라인에서 열람하실 수 있습니다." />
+    <meta name="keywords" content="서울사대부고, 서울대부고, 동창회보, 디지털아카이브, 서울대학교 사범대학 부설고등학교, SNUBUGO" />
+    <meta name="author" content="서울사대부고 동창회" />
+    
+    <!-- Open Graph 메타 태그 (소셜 미디어 공유) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="서울사대부고 동창회보 디지털 아카이브" />
+    <meta property="og:description" content="서울대학교 사범대학 부설고등학교 동창회보의 체계적인 디지털 아카이브. 2021년부터 2025년까지 동창회보를 온라인에서 열람하실 수 있습니다." />
+    <meta property="og:url" content="https://securil.github.io/snubugo-magazine/" />
+    <meta property="og:image" content="https://securil.github.io/snubugo-magazine/서울사대부고로고.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:site_name" content="서울사대부고 동창회보 아카이브" />
+    
+    <!-- Twitter Card 메타 태그 -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="서울사대부고 동창회보 디지털 아카이브" />
+    <meta name="twitter:description" content="서울대학교 사범대학 부설고등학교 동창회보의 체계적인 디지털 아카이브" />
+    <meta name="twitter:image" content="https://securil.github.io/snubugo-magazine/서울사대부고로고.png" />
+    
+    <!-- 추가 SEO 메타 태그 -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="rating" content="general" />
+    <meta name="distribution" content="global" />
+    
+    <!-- 모바일 최적화 -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="서울사대부고 동창회보" />
+    
+    <!-- DNS Prefetch 최적화 -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//firebasestorage.googleapis.com" />
+    
+    <!-- Preconnect 최적화 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- 구조화된 데이터 (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "서울사대부고 동창회보 디지털 아카이브",
+      "description": "서울대학교 사범대학 부설고등학교 동창회보의 체계적인 디지털 아카이브",
+      "url": "https://securil.github.io/snubugo-magazine/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "서울대학교 사범대학 부설고등학교 동창회",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://securil.github.io/snubugo-magazine/서울사대부고로고.png"
+        }
+      }
+    }
+    </script>
     <script type="module" crossorigin src="/snubugo-magazine/assets/index-GsaM1Ps4.js"></script>
     <link rel="stylesheet" crossorigin href="/snubugo-magazine/assets/index-BzotcWp6.css">
   </head>

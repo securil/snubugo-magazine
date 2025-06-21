@@ -1,0 +1,35 @@
+{
+  "name": "서울사대부고 동창회보 디지털 아카이브",
+  "short_name": "서울사대부고 동창회보",
+  "description": "서울대학교 사범대학 부설고등학교 동창회보의 체계적인 디지털 아카이브",
+  "start_url": "/snubugo-magazine/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e40af",
+  "orientation": "portrait-primary",
+  "scope": "/snubugo-magazine/",
+  "categories": ["education", "magazines", "archive"],
+  "lang": "ko",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/서울사대부고로고.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
