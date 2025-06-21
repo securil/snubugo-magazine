@@ -9,12 +9,13 @@
 - 서울사대부고 동창회보의 체계적인 디지털 아카이브 구축
 - 웹 기반 PDF 뷰어를 통한 온라인 열람 서비스 제공
 - 계절별/연도별 분류 시스템을 통한 효율적인 콘텐츠 관리
+- **이북 스타일 PDF 뷰어**를 통한 향상된 읽기 경험
 - 반응형 웹 디자인을 통한 다양한 디바이스 지원
 
 ### 프로젝트 범위
 - **아카이브 대상**: 2021년 116호 ~ 2025년 131호 (총 16개 호수)
 - **발간 주기**: 분기별 (봄/여름/가을/겨울호)
-- **지원 기능**: PDF 뷰어, 썸네일 미리보기, 검색/필터링, 반응형 UI
+- **지원 기능**: 기본 PDF 뷰어, 이북 스타일 뷰어, 썸네일 미리보기, 검색/필터링, 반응형 UI
 
 ### 배포 URL
 - **Production**: https://securil.github.io/snubugo-magazine/
@@ -29,10 +30,11 @@
 Framework: React 19.1 + TypeScript ~5.8.3
 Build Tool: Vite 6.3.5
 Styling: Tailwind CSS 3.4.17
-PDF Processing: React-PDF 9.2.1 + PDF.js 5.3.31
+PDF Processing: React-PDF 9.2.1 + PDF.js 5.3.31 (문제 해결 필요)
 State Management: Local React State (useState)
 Routing: React Router DOM 7.6.2 (준비됨, 현재 SPA)
 Icons: Lucide React 0.518.0
+Fonts: Pretendard Variable (한글 최적화)
 ```
 
 ### Backend & Storage
@@ -78,9 +80,18 @@ graph LR
 │   └── 📄 .nojekyll               # GitHub Pages 최적화
 ├── 📁 src/                        # React 소스코드
 │   ├── 📁 components/             # React 컴포넌트
+│   │   ├── 📄 Header.tsx          # 개선된 헤더 (완성)
+│   │   ├── 📄 HeroSection.tsx     # 최신호 대형 카드 (완성)
+│   │   ├── 📄 RecentIssues.tsx    # 최근호 미리보기 (완성)
+│   │   ├── 📄 ArchiveExplorer.tsx # 년도/계절 탐색 (완성)
+│   │   ├── 📄 MagazineViewer.tsx  # 기본 PDF 뷰어 (완성)
+│   │   ├── 📄 EBookViewer.tsx     # 이북 스타일 뷰어 (개발 중)
+│   │   └── 📄 MagazineCard.tsx    # 매거진 카드 (완성)
 │   ├── 📁 firebase/               # Firebase 설정
 │   ├── 📁 types/                  # TypeScript 타입
-│   └── 📁 utils/                  # 유틸리티 함수
+│   ├── 📁 utils/                  # 유틸리티 함수
+│   │   └── 📄 theme.ts            # 계절별 테마 시스템 (완성)
+│   └── 📁 hooks/                  # React Hooks
 ├── 📁 dist/                       # 빌드 결과물 (gh-pages)
 ├── 📄 package.json                # 프로젝트 설정
 ├── 📄 vite.config.ts             # Vite 설정
@@ -91,25 +102,42 @@ graph LR
 
 ## 🎯 핵심 기능 명세
 
-### 1. PDF 뷰어 시스템
+### 1. 기본 PDF 뷰어 시스템 ✅
 ```yaml
-기술: React-PDF + PDF.js
+기술: iframe 기반 브라우저 내장 PDF 뷰어
 기능:
   - PDF 문서 렌더링
-  - 페이지 네비게이션 (이전/다음)
-  - 확대/축소 (25% ~ 300%)
-  - 전체화면 모드
-  - 페이지 점프
-  - 로딩 상태 처리
-  - 에러 처리
+  - PC 환경: 자동 2페이지 뷰 (TwoPageLeft)
+  - 모바일 환경: 자동 1페이지 뷰 (FitH)
+  - 새 창 열기, 다운로드 지원
+  - 안정적이고 빠른 로딩
 
 성능:
-  - 지연 로딩 (Lazy Loading)
-  - PDF.js Worker 최적화
-  - 메모리 효율적 렌더링
+  - 즉시 로딩
+  - 브라우저 최적화
+  - CORS 문제 없음
 ```
 
-### 2. 콘텐츠 관리 시스템
+### 2. 이북 스타일 PDF 뷰어 🔄
+```yaml
+기술: React-PDF + PDF.js (현재 문제 해결 필요)
+디자인:
+  - 1페이지(표지): 단독 표시 + 3D 효과
+  - 2페이지부터: 책 펼침 양면 표시
+  - 중앙 바인딩 라인 표시
+  - 페이지별 번호 표시
+  - 3D 원근감 및 그림자 효과
+
+네비게이션:
+  - 표지 → 2-3페이지 → 4-5페이지 순서
+  - 키보드 단축키 (←→, +-, 1, ESC)
+  - 확대/축소 기능
+
+현재 상태: React-PDF 무한 로딩 문제로 개발 중단
+다음 해결 방안: 순수 PDF.js + Canvas 구현 또는 iframe 기반 대체
+```
+
+### 3. 콘텐츠 관리 시스템 ✅
 ```yaml
 데이터 구조:
   - 계층형 분류: 연도 > 계절 > 호수
@@ -119,22 +147,24 @@ graph LR
 필터링:
   - 연도별 필터 (2021-2025)
   - 계절별 필터 (봄/여름/가을/겨울)
-  - 실시간 검색 (제목/내용)
+  - 실시간 검색 (제목/내용) - 개발 예정
 ```
 
-### 3. 사용자 인터페이스
+### 4. 사용자 인터페이스 ✅
 ```yaml
 디자인 시스템:
-  - 계절별 색상 테마
+  - 계절별 색상 테마 (봄/여름/가을/겨울)
   - 반응형 그리드 레이아웃
   - 모바일 퍼스트 디자인
   - 접근성 지원 (ARIA)
+  - Pretendard 폰트 시스템
 
 컴포넌트:
-  - Header (브랜딩, 검색)
-  - MagazineList (목록, 필터)
-  - MagazineCard (개별 카드)
-  - MagazineViewer (PDF 뷰어)
+  - Header (브랜딩, 검색, 모바일 메뉴)
+  - HeroSection (최신호 대형 카드)
+  - RecentIssues (최근 2-3호 미리보기)
+  - ArchiveExplorer (년도/계절 탐색)
+  - MagazineViewer (기본/이북 뷰어 통합)
 ```
 
 ---
@@ -163,17 +193,23 @@ interface Magazine {
 }
 ```
 
-### Firebase Storage 구조
-```
-Firebase Storage:
-├── 📁 pdfs/
-│   ├── 📄 2021년 116호-서울사대부고 봄호.pdf
-│   ├── 📄 2021년 117호-서울사대부고 여름호.pdf
-│   └── ... (16개 PDF 파일)
-└── 📁 thumbnails/
-    ├── 🖼️ 2021년 116호-서울사대부고 봄호.png
-    ├── 🖼️ 2021년 117호-서울사대부고 여름호.png
-    └── ... (16개 썸네일 이미지)
+### 계절별 테마 시스템
+```typescript
+interface SeasonalTheme {
+  season: Season;
+  colors: {
+    primary: string;       // 메인 색상
+    secondary: string;     // 보조 색상
+    accent: string;        // 강조 색상
+    background: string;    // 배경 색상
+    gradient: string;      // 그라데이션
+    text: string;          // 텍스트 색상
+    textSecondary: string; // 보조 텍스트 색상
+  };
+  icon: string;           // 이모지
+  emoji: string;          // 아이콘
+  description: string;    // 설명
+}
 ```
 
 ---
@@ -212,30 +248,38 @@ npm run deploy
 
 ## 🎨 UI/UX 설계
 
-### 디자인 시스템
+### 계절별 디자인 시스템
 ```yaml
-색상 팔레트:
-  봄: 연분홍, 연두색 계열
-  여름: 하늘색, 노란색 계열  
-  가을: 주황색, 갈색 계열
-  겨울: 파란색, 회색 계열
+봄 테마:
+  Primary: #FFB7C5 (벚꽃 핑크)
+  Secondary: #98FB98 (연두색)
+  Gradient: linear-gradient(135deg, #FFB7C5 0%, #98FB98 100%)
+  Description: "새로운 시작과 희망의 계절"
 
-타이포그래피:
-  제목: 24px-32px, 볼드
-  본문: 14px-16px, 일반
-  캡션: 12px-14px, 회색
+여름 테마:
+  Primary: #87CEEB (하늘색)
+  Secondary: #F0E68C (연한 노란색)
+  Gradient: linear-gradient(135deg, #87CEEB 0%, #F0E68C 100%)
+  Description: "활기찬 에너지와 성장의 계절"
 
-레이아웃:
-  모바일: 1열 그리드
-  태블릿: 2열 그리드
-  데스크톱: 3-4열 그리드
+가을 테마:
+  Primary: #DEB887 (갈색)
+  Secondary: #FF8C00 (주황색)
+  Gradient: linear-gradient(135deg, #DEB887 0%, #FF8C00 100%)
+  Description: "성숙과 결실의 계절"
+
+겨울 테마:
+  Primary: #B0C4DE (연한 파랑)
+  Secondary: #F8F8FF (거의 흰색)
+  Gradient: linear-gradient(135deg, #B0C4DE 0%, #F8F8FF 100%)
+  Description: "고요한 성찰과 준비의 계절"
 ```
 
 ### 반응형 브레이크포인트
 ```css
-모바일: 0px - 768px
-태블릿: 768px - 1024px
-데스크톱: 1024px+
+모바일: 0px - 768px     (1열 그리드, 1페이지 뷰)
+태블릿: 768px - 1200px  (2열 그리드, 1페이지 뷰)
+PC: 1200px+            (3-4열 그리드, 2페이지 뷰)
 ```
 
 ---
@@ -252,41 +296,79 @@ XSS 방지: React 기본 보안
 
 ### 성능 최적화
 ```yaml
-이미지 최적화:
-  - 썸네일 압축
-  - Lazy Loading
-  - WebP 형식 지원
+현재 번들 사이즈: ~600KB (gzipped: ~180KB)
+목표 번들 사이즈: <300KB (React-PDF 문제 해결 후)
 
-번들 최적화:
+최적화 적용:
   - Vite Tree Shaking
-  - Code Splitting
-  - 압축 (gzip)
+  - 이미지 지연 로딩
+  - Firebase Storage CDN
+  - CSS 최적화
+  - TypeScript 컴파일 최적화
 
-로딩 성능:
-  - PDF 스트리밍
-  - 프리로딩
-  - 캐싱 전략
+추가 최적화 계획:
+  - Code Splitting
+  - 서비스 워커 캐싱
+  - PWA 기능
 ```
 
 ---
 
 ## 📈 확장 계획
 
-### Phase 2 기능
-- 실시간 검색 기능 고도화
+### Phase 2 기능 (개발 중)
+- ✅ 계절별 테마 시스템
+- ✅ 이북 스타일 레이아웃
+- 🔄 이북 스타일 PDF 뷰어 (React-PDF 문제 해결 필요)
+- ⏳ 실시간 검색 기능 고도화
+
+### Phase 3 기능 (계획)
 - 북마크 시스템
 - 다크/라이트 모드
 - 소셜 공유 기능
+- 키보드 단축키 고도화
 
-### Phase 3 기능
+### Phase 4 기능 (미래)
 - 관리자 패널
 - 자동 PDF 업로드
 - 댓글 시스템
 - 다국어 지원
+- PWA 기능
 
 ---
 
-**문서 버전**: 2.0.0  
-**최종 업데이트**: 2025.06.20  
+## ⚠️ 현재 알려진 문제점
+
+### 1. React-PDF 무한 로딩 문제
+```yaml
+문제: EBookViewer에서 React-PDF 컴포넌트 무한 로딩
+원인: PDF.js Worker 설정 또는 Firebase Storage CORS 이슈
+영향: 이북 스타일 뷰어 사용 불가
+해결 방안:
+  - 옵션 1: 순수 PDF.js + Canvas 구현
+  - 옵션 2: iframe 기반 고급 뷰어
+  - 옵션 3: 대체 PDF 라이브러리 사용
+```
+
+### 2. 번들 사이즈 최적화 필요
+```yaml
+현재: ~600KB (React-PDF 포함)
+목표: <300KB
+방법: React-PDF 제거 및 경량 대안 구현
+```
+
+---
+
+## 🎯 다음 개발 우선순위
+
+1. **최우선**: React-PDF 문제 해결 및 이북 뷰어 완성
+2. **중요**: 검색 기능 구현
+3. **권장**: 성능 최적화 및 번들 사이즈 감소
+4. **선택**: 고급 기능 (북마크, 다크모드 등)
+
+---
+
+**문서 버전**: 3.0.0  
+**최종 업데이트**: 2025.06.21  
 **작성자**: securil  
-**프로젝트 상태**: Phase 1 완료 (MVP 배포됨)
+**프로젝트 상태**: Phase 2 진행 중 (이북 뷰어 문제 해결 필요)

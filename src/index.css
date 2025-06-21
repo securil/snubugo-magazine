@@ -1,48 +1,318 @@
+/* Import Google Fonts - Pretendard for Korean */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom base styles */
+/* CSS Custom Properties for Dynamic Theming */
+:root {
+  /* Default theme colors (will be overridden by JavaScript) */
+  --theme-primary: #87CEEB;
+  --theme-secondary: #F0E68C;
+  --theme-accent: #4169E1;
+  --theme-background: #F0F9FF;
+  --theme-gradient: linear-gradient(135deg, #87CEEB 0%, #F0E68C 100%);
+  --theme-text: #2D3748;
+  --theme-text-secondary: #718096;
+  
+  /* Semantic colors */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+}
+
+/* Base Styles */
 @layer base {
   html {
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', 'Malgun Gothic', sans-serif;
+    scroll-behavior: smooth;
   }
   
   body {
-    @apply bg-gray-50 text-gray-900 antialiased;
+    @apply bg-gray-50 text-gray-900 antialiased leading-relaxed;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+  
+  /* Typography Scale */
+  h1 {
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+  }
+  
+  h2 {
+    @apply text-2xl md:text-3xl font-semibold tracking-tight;
+  }
+  
+  h3 {
+    @apply text-xl md:text-2xl font-semibold;
+  }
+  
+  h4 {
+    @apply text-lg md:text-xl font-medium;
+  }
+  
+  h5 {
+    @apply text-base md:text-lg font-medium;
+  }
+  
+  h6 {
+    @apply text-sm md:text-base font-medium;
+  }
+  
+  p {
+    @apply text-base leading-relaxed;
+  }
+  
+  small {
+    @apply text-sm text-gray-600;
   }
 }
 
-/* Custom components */
+/* Custom Components */
 @layer components {
+  /* Button Styles */
   .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+    @apply bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
   }
   
+  .btn-secondary {
+    @apply bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-6 rounded-lg transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
+  }
+  
+  .btn-seasonal {
+    background: var(--theme-gradient);
+    @apply text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 shadow-lg;
+  }
+  
+  .btn-seasonal:hover {
+    filter: brightness(1.1);
+  }
+  
+  /* Card Styles */
   .card {
-    @apply bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden;
+    @apply bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-200 ease-in-out;
   }
   
+  .card:hover {
+    @apply shadow-lg transform -translate-y-1;
+  }
+  
+  .card-seasonal {
+    @apply bg-white rounded-xl shadow-sm border-2 overflow-hidden transition-all duration-300 ease-in-out;
+    border-color: var(--theme-primary);
+    background: linear-gradient(to bottom, var(--theme-background), white);
+  }
+  
+  .card-seasonal:hover {
+    @apply shadow-xl transform -translate-y-2;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  /* Layout Components */
   .container-main {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
+  
+  .container-narrow {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .container-wide {
+    @apply max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Grid Systems */
+  .grid-responsive {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+  }
+  
+  .grid-magazine {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6;
+  }
+  
+  /* Section Styles */
+  .section {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+  
+  .section-sm {
+    @apply py-8 md:py-12;
+  }
+  
+  /* Hero Section */
+  .hero-gradient {
+    background: var(--theme-gradient);
+  }
+  
+  /* Loading States */
+  .loading-spinner {
+    @apply animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600;
+  }
+  
+  .loading-skeleton {
+    @apply animate-pulse bg-gray-200 rounded;
+  }
+  
+  /* PDF Viewer Styles */
+  .pdf-viewer {
+    @apply bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden;
+  }
+  
+  .pdf-page {
+    @apply mx-auto shadow-sm;
+  }
+  
+  .pdf-controls {
+    @apply bg-gray-50 border-t border-gray-200 px-4 py-3 flex items-center justify-between;
+  }
+  
+  /* Seasonal Text Colors */
+  .text-seasonal {
+    color: var(--theme-accent);
+  }
+  
+  .text-seasonal-secondary {
+    color: var(--theme-text-secondary);
+  }
+  
+  /* Badge Styles */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-seasonal {
+    background-color: var(--theme-primary);
+    @apply text-white;
+  }
 }
 
-/* Seasonal theme colors */
+/* Seasonal Theme Utilities */
 @layer utilities {
+  /* Spring Theme */
   .theme-spring {
-    @apply text-green-600 border-green-500;
+    --theme-primary: #FFB7C5;
+    --theme-secondary: #98FB98;
+    --theme-accent: #FF69B4;
+    --theme-background: #FFF5F8;
+    --theme-gradient: linear-gradient(135deg, #FFB7C5 0%, #98FB98 100%);
   }
   
+  /* Summer Theme */
   .theme-summer {
-    @apply text-amber-600 border-amber-500;
+    --theme-primary: #87CEEB;
+    --theme-secondary: #F0E68C;
+    --theme-accent: #4169E1;
+    --theme-background: #F0F9FF;
+    --theme-gradient: linear-gradient(135deg, #87CEEB 0%, #F0E68C 100%);
   }
   
+  /* Fall Theme */
   .theme-fall {
-    @apply text-orange-600 border-orange-500;
+    --theme-primary: #DEB887;
+    --theme-secondary: #FF8C00;
+    --theme-accent: #CD853F;
+    --theme-background: #FDF6E3;
+    --theme-gradient: linear-gradient(135deg, #DEB887 0%, #FF8C00 100%);
   }
   
+  /* Winter Theme */
   .theme-winter {
-    @apply text-blue-600 border-blue-500;
+    --theme-primary: #B0C4DE;
+    --theme-secondary: #F8F8FF;
+    --theme-accent: #4682B4;
+    --theme-background: #F8FAFC;
+    --theme-gradient: linear-gradient(135deg, #B0C4DE 0%, #F8F8FF 100%);
+  }
+  
+  /* Responsive Text */
+  .text-responsive-xl {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+  
+  .text-responsive-lg {
+    @apply text-xl md:text-2xl lg:text-3xl;
+  }
+  
+  .text-responsive-md {
+    @apply text-lg md:text-xl lg:text-2xl;
+  }
+  
+  /* Line Clamp Utilities */
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* Animation Utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+}
+
+/* Custom Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .card {
+    @apply shadow-none border border-gray-300;
   }
 }
