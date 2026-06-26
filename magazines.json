@@ -1,6 +1,28 @@
 {
   "magazines": [
     {
+      "id": "2026-여름-133",
+      "year": 2026,
+      "season": "여름",
+      "issue": 133,
+      "month": 6,
+      "title": "2026년 133호 서울사대부고 여름호",
+      "description": "서울대학교 사범대학 부설고등학교 동창회보 2026년 여름호",
+      "pdfUrl": "https://firebasestorage.googleapis.com/v0/b/snubugo-magazine.firebasestorage.app/o/pdfs%2F2026%EB%85%84%20133%ED%98%B8-%EC%84%9C%EC%9A%B8%EC%82%AC%EB%8C%80%EB%B6%80%EA%B3%A0%20%EC%97%AC%EB%A6%84%ED%98%B8.pdf?alt=media&token=ogo6zy4cxjmqule2am",
+      "thumbnailUrl": "https://firebasestorage.googleapis.com/v0/b/snubugo-magazine.firebasestorage.app/o/thumbnails%2F2026%EB%85%84%20133%ED%98%B8-%EC%84%9C%EC%9A%B8%EC%82%AC%EB%8C%80%EB%B6%80%EA%B3%A0%20%EC%97%AC%EB%A6%84%ED%98%B8.png?alt=media&token=e24eva9zyckmqule3ak",
+      "pageCount": 52,
+      "publishDate": "2026-06-01",
+      "fileSize": "12.2 MB",
+      "isLatest": true,
+      "featured": true,
+      "tags": [
+        "여름",
+        "2026",
+        "133호"
+      ],
+      "category": "동창회보"
+    },
+    {
       "id": "2025-겨울-132",
       "year": 2025,
       "season": "겨울",
@@ -13,7 +35,7 @@
       "pageCount": 52,
       "publishDate": "2025-12-31",
       "fileSize": "88.6 MB",
-      "isLatest": true,
+      "isLatest": false,
       "featured": true,
       "tags": [
         "겨울",
@@ -379,15 +401,15 @@
     "title": "서울사대부고 동창회보 디지털 아카이브",
     "description": "서울대학교 사범대학 부설고등학교 동창회보를 디지털로 보관하고 열람할 수 있는 아카이브입니다.",
     "version": "2.0.0",
-    "lastUpdated": "2025-01-05",
-    "totalMagazines": 17,
+    "lastUpdated": "2026-06-26",
+    "totalMagazines": 18,
     "yearRange": {
       "start": 2021,
-      "end": 2025
+      "end": 2026
     },
     "issueRange": {
       "start": 116,
-      "end": 132
+      "end": 133
     }
   }
 }
